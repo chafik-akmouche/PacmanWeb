@@ -5,12 +5,18 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title> Connexion </title>
+		<title> Connexion Pacman </title>
 	</head>
 	
 	<body>
-		<p> ${8*6} </p>
+	
+		<form action="connexion" method = "post">
+			<p>Nom d'utilisateur : <input type="text" placeholder="Votre nom d'utilisateur ..." name="username" required /></p>
+			<p>Mot de passe : <input type="password" placeholder="Votre mot de passe ..." name="password" required /></p>
+			<button type="submit">Connexion</button>
+		</form>
+		
 		<p>Vous n'êtes pas encore inscrit !<a href="/PacmanWeb/inscription"> Inscrivez-vous maintenant</a></p>
-		<h1><c:out value="Au revoir !" /></h1>
+	
 	</body>
 </html>
