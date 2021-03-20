@@ -34,7 +34,7 @@ public class Connexion extends HttpServlet {
         ConnexionForm form = new ConnexionForm();
         
         /* Traitement de la requête et récupération du bean en résultant */
-        Utilisateur utilisateur = form.connexionUtilisateur( request );
+        Utilisateur utilisateur = form.connexionUtilisateur(request);
 
         HttpSession session = request.getSession();
         
@@ -44,22 +44,17 @@ public class Connexion extends HttpServlet {
          */
         if (form.getErreurs().isEmpty()) {
             session.setAttribute(ATT_SESSION_UTILISATEUR, utilisateur);
+            /* Stockage du formulaire et du bean dans l'objet request */
+            request.setAttribute( ATT_FORM, form );
+            request.setAttribute( ATT_UTILISATEUR, utilisateur);
+            response.sendRedirect("http://localhost:8080/PacmanWeb/accueil");
         } else {
             session.setAttribute(ATT_SESSION_UTILISATEUR, null);
+            /* Stockage du formulaire et du bean dans l'objet request */
+            request.setAttribute( ATT_FORM, form );
+            request.setAttribute( ATT_UTILISATEUR, utilisateur);
+            this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
         }
-
-        /* Stockage du formulaire et du bean dans l'objet request */
-        request.setAttribute( ATT_FORM, form );
-        request.setAttribute( ATT_UTILISATEUR, utilisateur );
-
-        this.getServletContext().getRequestDispatcher(VUE).forward( request, response );
-        
-		
-		//String pseudo = request.getParameter("pseudo");
-		
-		//session.setAttribute("pseudo", pseudo);	
-		//response.sendRedirect("http://localhost:8080/PacmanWeb/accueil");
-		//this.getServletContext().getRequestDispatcher("/WEB-INF/accueil.jsp").forward(request, response);
 	}
 
 }

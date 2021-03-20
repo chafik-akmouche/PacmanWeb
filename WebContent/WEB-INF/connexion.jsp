@@ -22,16 +22,25 @@
 			</div> <br/>
 			<div class="form-group">
 				<label for="nom"> Mot de passe </label>
-				<input type="password" class="form-control" name="password" id="password" required />
+				<input type="password" class="form-control" value="" name="password" id="password" required />
+				<span class="erreur">${form.erreurs['password']}</span>
+				
 			</div> <br/>
 			<div class="form-group">
 				<button class="btn btn-primary" type="submit">Connexion</button>
+				<p class="${empty form.erreurs ? 'succes' : 'erreur'}">${form.resultat}</p>
 			</div>
 			<div class="form-group">
 				<label class="form-check-label" for="inscription"> Vous n'êtes pas encore inscrit ! </label>
 				<a href="/PacmanWeb/inscription"><label class="form-check-label" for="inscription"> Inscrivez-vous maintenant </label></a>
 			</div>     
 		</form>
+		
+		<%-- Vérification de la présence d'un objet utilisateur en session --%>
+        <c:if test="${!empty sessionScope.sessionUtilisateur}">
+             <%-- Si l'utilisateur existe en session, alors on affiche son adresse email. --%>
+             <p class="succes">Vous êtes connecté(e) avec l'adresse : ${sessionScope.sessionUtilisateur.pseudo}</p>
+        </c:if>
 	</div>
 	
 </body>

@@ -5,20 +5,47 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 		<title> Inscription </title>
 	</head>
 	
 	<body>
-		<form method="post" action="inscription">
-		<p>Nom d'utilisateur* <input type="text" placeholder="Nom d'utilisateur ..." name="username" id="username" required></p>
-		<p>E-mail* : <input type="email" placeholder="Email@exemple.com" name="email" id="email" required></p>
-		<p>Date de naissance <input type="date" placeholder="Date de naissance" name="date_nais" id="date_nais"></p>
-		<p>Mot de passe* <input type="password" placeholder="Mot de passe" name="pwd" id="pwd" required></p>
-		<p>Confirmation mot de passe* <input type="password" placeholder="Confirmation mot de passe " id="confirmation_pwd" name="confirmation_pwd" required></p>
-		<button type="submit">Créer mon compte</button>
+	
+	
+	
+	<div class="container">
+		<h1> Inscription </h1> <br/> <br/>            
+		<form action="inscription" method = "post">
+			<div class="form-group">
+				<label for="username"> Nom d'utilisateur* </label>
+				<input type="text" class="form-control" name="pseudo" id="pseudo" placeholder="Pseudo ..." required /> 
+			</div> <br/>
+			
+			<div class="form-group">
+				<label for="email"> Email* </label>
+				<input type="email" class="form-control" name="email" id="email" placeholder="Adresse mail" required /> 
+			</div> <br/>
+			
+			<div class="form-group">
+				<label for="password"> Mot de passe* </label>
+				<input type="password" class="form-control" value="" name="password" id="password" required />
+			</div> <br/>
+			
+			<div class="form-group">
+				<label for="conf_password"> Confirmation mot de passe* </label>
+				<input type="password" class="form-control" value="" name="conf_password" id="conf_password" required />
+			</div> <br/>
+			
+			<div class="form-group">
+				<button class="btn btn-primary" type="submit">Inscription</button>
+			
+			</div>
+			<div class="form-group">
+				<label class="form-check-label" for="connexion"> Vous avez déjà un compte ? </label>
+				<a href="/PacmanWeb/connexion"><label class="form-check-label" for="connexion"> Connectez-vous maintenant </label></a>
+			</div>     
 		</form>
-		
-		<p>Vous avez déjà un compte !<a href="/PacmanWeb/connexion"> Connectez-vous maintenant</a></p>
+	</div>
 	
 	</body>
 </html>

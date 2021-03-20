@@ -63,8 +63,8 @@ public class ConnexionForm {
 	
 	/* méthode de validation de pseudo */
 	private void validationPseudo (String pseudo) throws Exception {
-		if (pseudo == null && pseudo.length() <= 3) {
-			throw new Exception("Veuillez réessayer.");
+		if (pseudo.length() <= 3) {
+			throw new Exception("Le peudo doit contenir au mois caractères.");
 		}
 	}
 	

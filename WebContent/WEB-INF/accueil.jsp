@@ -12,11 +12,16 @@
 <body>
 
 	<h1> Page Accueil </h1>
-	
-		<p> Vous êtes ${ sessionScope.pseudo } </p>
 		
 		<ul>
-			<li> <a href="#"> ${ sessionScope.pseudo } </a> </li>
+			<li> 
+				<a href="#"> 
+					<c:if test="${!empty sessionScope.sessionUtilisateur}">
+		             	<p> ${sessionScope.sessionUtilisateur.pseudo} </p>
+		        	</c:if>
+				</a> 
+			</li>
+			
 			<li> <a href="/PacmanWeb/deconnexion"> Déconnexion </a> </li>
 		</ul>
 
