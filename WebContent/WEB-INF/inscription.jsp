@@ -9,7 +9,7 @@
 	</head>
 	
 	<body>
-		<form method="post" action="inscription" novalidate>
+		<form method="post" action="inscription">
 		<p>Nom d'utilisateur* <input type="text" placeholder="Nom d'utilisateur ..." name="username" id="username" required></p>
 		<p>E-mail* : <input type="email" placeholder="Email@exemple.com" name="email" id="email" required></p>
 		<p>Date de naissance <input type="date" placeholder="Date de naissance" name="date_nais" id="date_nais"></p>
