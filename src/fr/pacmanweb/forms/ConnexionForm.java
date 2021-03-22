@@ -63,9 +63,9 @@ public class ConnexionForm {
 	
 	/* méthode de validation de pseudo */
 	private void validationPseudo (String pseudo) throws Exception {
-		if (pseudo.length() <= 3) {
-			throw new Exception("Le peudo doit contenir au moins 4 caractères.");
-		}
+		if ( pseudo != null && pseudo.length() < 3 ) {
+	        throw new Exception( "Le nom d'utilisateur doit contenir au moins 3 caractères" );
+	    }
 	}
 	
 	/* méthode de validation du mot de passe */

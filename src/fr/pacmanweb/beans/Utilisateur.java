@@ -7,8 +7,7 @@ public class Utilisateur {
 	private String pseudo;
 	private String email;
 	private String password;
-	private Timestamp date_inscription;
-	private String ville;	
+	private Timestamp date_inscription;	
 
 
 	public Utilisateur () {
@@ -54,16 +53,6 @@ public class Utilisateur {
 
 	public void setPassword(String password) {
 		this.password = password;
-	}
-
-
-	public String getVille() {
-		return ville;
-	}
-
-
-	public void setVille(String ville) {
-		this.ville = ville;
 	}
 	
 	

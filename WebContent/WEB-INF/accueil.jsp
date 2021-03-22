@@ -12,9 +12,10 @@
 
 <body>
 
-	<h1> Page Accueil </h1>
+	<h1> Tableau de bord </h1>
 		
 		<ul>
+			<li> <a href="/PacmanWeb/"> Home </a> </li>
 			<li> 
 				<a href="#"> 
 					<c:if test="${!empty sessionScope.sessionUtilisateur}">

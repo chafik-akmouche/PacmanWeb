@@ -25,8 +25,21 @@ public class Connexion extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// il faut vérifier s'il y a une session ouverte -> accueil 
-		this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
+		
+		 /* Récupération de la session depuis la requête */
+        HttpSession session = request.getSession();
+
+         // Si l'objet utilisateur n'existe pas dans la session en cours, alors
+         // l'utilisateur n'est pas connecté.
+        if ( session.getAttribute( ATT_SESSION_UTILISATEUR ) == null ) {
+            /* Redirection vers la page publique */
+        	this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
+        } else {
+            /* Affichage de la page restreinte */
+        	response.sendRedirect("/PacmanWeb/accueil");
+        }
+		
+		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -39,21 +52,17 @@ public class Connexion extends HttpServlet {
 
         HttpSession session = request.getSession();
         
-        /**
-         * Si aucune erreur de validation n'a eu lieu, alors ajout du bean
-         * Utilisateur à la session, sinon suppression du bean de la session.
-         */
+        /* Stockage du formulaire et du bean dans l'objet request */
+        request.setAttribute( ATT_FORM, form );
+        request.setAttribute( ATT_UTILISATEUR, utilisateur);
+        
+        // Si aucune erreur de validation n'a eu lieu, alors ajout du bean
+        // Utilisateur à la session, sinon suppression du bean de la session.
         if (form.getErreurs().isEmpty()) {
             session.setAttribute(ATT_SESSION_UTILISATEUR, utilisateur);
-            /* Stockage du formulaire et du bean dans l'objet request */
-            request.setAttribute( ATT_FORM, form );
-            request.setAttribute( ATT_UTILISATEUR, utilisateur);
             response.sendRedirect("/PacmanWeb/accueil");
         } else {
             session.setAttribute(ATT_SESSION_UTILISATEUR, null);
-            /* Stockage du formulaire et du bean dans l'objet request */
-            request.setAttribute( ATT_FORM, form );
-            request.setAttribute( ATT_UTILISATEUR, utilisateur);
             this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
         }
 	}

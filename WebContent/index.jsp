@@ -15,8 +15,17 @@
 	
 	<h1>Bienvenu au Célèbre jeu Pacman</h1>
 	
-	<p> <a href="/PacmanWeb/connexion"> Connexion </a> </p>
-	<p> <a href="/PacmanWeb/inscription"> Inscription </a> </p>
+	<c:if test="${!empty sessionScope.sessionUtilisateur}">
+		<p> <a href="/PacmanWeb/accueil"> ${sessionScope.sessionUtilisateur.pseudo} </a> </p>
+		<p> <a href="/PacmanWeb/deconnexion"> Déconnexion </a> </p>
+	</c:if>
+	
+	<c:if test="${empty sessionScope.sessionUtilisateur}">
+		<p> <a href="/PacmanWeb/connexion"> Connexion </a> </p>
+		<p> <a href="/PacmanWeb/inscription"> Inscription </a> </p>
+	</c:if>
+	
+	
 		
 </body>
 
