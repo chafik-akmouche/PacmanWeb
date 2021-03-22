@@ -1,14 +1,15 @@
 package fr.pacmanweb.beans;
 
+import java.sql.Date;
 import java.sql.Timestamp;
 
 public class Partie {
 	private Long id;
 	private int score;
-	private Timestamp date;
+	private Date date;
 	private String joueur;
 	
-	public Partie(Long id, int score, Timestamp date, String joueur) {
+	public Partie(Long id, int score, Date date, String joueur) {
 		this.id = id;
 		this.score = score;
 		this.date = date;
@@ -37,11 +38,11 @@ public class Partie {
 		this.score = score;
 	}
 
-	public Timestamp getDate() {
+	public Date getDate() {
 		return date;
 	}
 
-	public void setDate(Timestamp date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
 

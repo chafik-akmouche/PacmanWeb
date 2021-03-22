@@ -64,7 +64,7 @@ public class ConnexionForm {
 	/* méthode de validation de pseudo */
 	private void validationPseudo (String pseudo) throws Exception {
 		if (pseudo.length() <= 3) {
-			throw new Exception("Le peudo doit contenir au mois caractères.");
+			throw new Exception("Le peudo doit contenir au moins 4 caractères.");
 		}
 	}
 	
@@ -72,7 +72,7 @@ public class ConnexionForm {
 	private void validationMotDePasse (String password) throws Exception {
 		if (password != null) {
 			if (password.length() < 4) {
-				throw new Exception("Le mot de passe doit contenir au moins 3 caractères.");
+				throw new Exception("Le mot de passe doit contenir au moins 4 caractères.");
 			}
 		}else {
 			throw new Exception("Merci de saisir votre mot de passe.");

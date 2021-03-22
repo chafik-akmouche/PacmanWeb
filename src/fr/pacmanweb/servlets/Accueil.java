@@ -16,6 +16,10 @@ public class Accueil extends HttpServlet {
     }
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		/*
+		Parties parties = new Parties();
+		request.setAttribute("parties", Parties.recupererParties());
+		*/
 		this.getServletContext().getRequestDispatcher("/WEB-INF/accueil.jsp").forward(request, response);
 	}
 

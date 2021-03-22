@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!DOCTYPE html>
 
@@ -13,11 +14,10 @@
 <!-- classement des meilleur parties jouées ... -->
 	
 	<h1>Bienvenu au Célèbre jeu Pacman</h1>
-	<p> Vous êtes ${ sessionScope.pseudo } </p>
 	
 	<p> <a href="/PacmanWeb/connexion"> Connexion </a> </p>
 	<p> <a href="/PacmanWeb/inscription"> Inscription </a> </p>
-	
+		
 </body>
 
 </html>

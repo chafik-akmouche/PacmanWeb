@@ -25,6 +25,7 @@ public class Connexion extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// il faut vérifier s'il y a une session ouverte -> accueil 
 		this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
 	}
 
@@ -47,7 +48,7 @@ public class Connexion extends HttpServlet {
             /* Stockage du formulaire et du bean dans l'objet request */
             request.setAttribute( ATT_FORM, form );
             request.setAttribute( ATT_UTILISATEUR, utilisateur);
-            response.sendRedirect("http://localhost:8080/PacmanWeb/accueil");
+            response.sendRedirect("/PacmanWeb/accueil");
         } else {
             session.setAttribute(ATT_SESSION_UTILISATEUR, null);
             /* Stockage du formulaire et du bean dans l'objet request */
