@@ -26,7 +26,7 @@
 			
 			<li> <a href="/PacmanWeb/deconnexion"> Déconnexion </a> </li>
 		</ul>
-		<!-- 
+		
 		<h1> Mon historique des parties jouées </h1>
 		<table class="table table-striped">
         <thead>
@@ -36,7 +36,7 @@
             <th>DATE</th>
           </tr>
         </thead>
-        <c:forEach var="p" items="${ parties }" >
+        <c:forEach var="p" items="${ partie }" >
         <tbody>
           <tr>
             <td> <c:out value="${ p.id }"/> </td>
@@ -47,6 +47,6 @@
         </tbody>
         </c:forEach>
       </table>
-	-->
+	
 </body>
 </html>

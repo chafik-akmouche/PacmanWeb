@@ -6,6 +6,8 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import fr.pacmanweb.beans.Utilisateur;
+import fr.pacmanweb.dao.DAOException;
+import fr.pacmanweb.dao.UtilisateurDao;
 
 public class InscriptionForm {
 	public static final String CHAMP_PSEUDO = "pseudo";
@@ -16,6 +18,13 @@ public class InscriptionForm {
     
     private Map <String, String> erreurs = new HashMap <String, String> ();
 	
+    private UtilisateurDao utilisateurDao;
+	
+	// Constructeur
+	public InscriptionForm( UtilisateurDao utilisateurDao ) {
+	    this.utilisateurDao = utilisateurDao;
+	}
+    
 	public String getResultat() {
 		return resultat;
 	}
@@ -34,69 +43,82 @@ public class InscriptionForm {
 		
 		// Validation du champ pseudo
 		try {
-			validationPseudo(pseudo);
-		} catch (Exception e) {
-			setErreur( CHAMP_PSEUDO, e.getMessage());
+			traiterEmail(email, utilisateur);
+			traiterPseudo(pseudo, utilisateur);
+			traiterPassword(password, conf_password, utilisateur);
+			
+			if (erreurs.isEmpty()) {
+				utilisateurDao.inserer(utilisateur);
+				resultat = "Succès de l'inscription";
+			} else {
+				resultat = "Échec de l'inscription";
+			}
+			
+		} catch (DAOException e) {
+			resultat = "Une erreur est survenue, merci de réessayer";
+			e.printStackTrace();
 		}
-		utilisateur.setPseudo( pseudo );
 		
-		
-		// Validation du champ email
+		return utilisateur;	
+	}
+	
+	// appel à la méthode validation email
+	private void traiterEmail(String email, Utilisateur utilisateur) {
 		try {
-			validationEmail(email);
-		} catch (Exception e) {
-			setErreur( CHAMP_EMAIL, e.getMessage());
+			validationEmail (email);
+		} catch (FormValidationException e) {
+			setErreur(CHAMP_EMAIL, e.getMessage());
 		}
-		utilisateur.setEmail( email );
-		
-		
-		// Validation du champ password
+		utilisateur.setEmail(email);
+	}
+	
+	private void traiterPseudo (String pseudo, Utilisateur utilisateur) {
+		try {
+			validationPseudo (pseudo);
+		} catch (FormValidationException e) {
+			setErreur(CHAMP_PSEUDO, e.getMessage());
+		}
+		utilisateur.setPseudo(pseudo);
+	}
+	
+	private void traiterPassword (String password, String conf_password, Utilisateur utilisateur) {
 		try {
 			validationPassword(password, conf_password);
-		} catch (Exception e) {
-			setErreur( CHAMP_PASSWORD, e.getMessage());
-			setErreur( CHAMP_CONF_PASSWORD, null );
+		} catch (FormValidationException e) {
+			setErreur(CHAMP_PASSWORD, e.getMessage());
+			setErreur(CHAMP_CONF_PASSWORD, null);
 		}
-		utilisateur.setPassword( password );
-		
-		
-		 if ( erreurs.isEmpty() ) {
-		        resultat = "Compte créé avec succès. Veuillez vous rediriger vers la page de connexion";
-		    } else {
-		        resultat = "Échec";
-		    }		
-		
-		return utilisateur;		
+		utilisateur.setPassword(password);
 	}
 	
 	
-	private void validationEmail(String email) throws Exception {
+	private void validationEmail(String email) throws FormValidationException {
 		if ( email != null ) {
 	        if ( !email.matches( "([^.@]+)(\\.[^.@]+)*@([^.@]+\\.)+([^.@]+)" ) ) {
-	            throw new Exception( "Merci de saisir une adresse mail valide" );
+	            throw new FormValidationException( "Merci de saisir une adresse mail valide" );
 	        }
 	    } else {
-	        throw new Exception( "Merci de saisir une adresse mail" );
+	        throw new FormValidationException( "Merci de saisir une adresse mail" );
 	    }
 		
 	}
 
-	private void validationPassword(String password, String conf_password) throws Exception {
-		if ( password != null && conf_password != null ) {
+	private void validationPassword(String password, String conf_password) throws FormValidationException {
+		if (password != null && conf_password != null ) {
 	        if ( !password.equals( conf_password ) ) {
-	            throw new Exception( "Les mots de passe entrés sont différents, merci de les saisir à nouveau" );
+	            throw new FormValidationException("Les mots de passe entrés sont différents, merci de les saisir à nouveau" );
 	        } else if ( password.length() < 4 ) {
-	            throw new Exception( "Les mots de passe doivent contenir au moins 4 caractères" );
+	            throw new FormValidationException("Les mots de passe doivent contenir au moins 4 caractères" );
 	        }
 	    } else {
-	        throw new Exception( "Merci de saisir et confirmer votre mot de passe" );
+	        throw new FormValidationException("Merci de saisir et confirmer votre mot de passe" );
 	    }
 		
 	}
 
-	private void validationPseudo(String pseudo) throws Exception {
-		if ( pseudo != null && pseudo.length() < 3 ) {
-	        throw new Exception( "Le nom d'utilisateur doit contenir au moins 3 caractères" );
+	private void validationPseudo(String pseudo) throws FormValidationException {
+		if (pseudo != null && pseudo.length() < 3) {
+	        throw new FormValidationException("Le nom d'utilisateur doit contenir au moins 3 caractères" );
 	    }
 		
 	}
@@ -112,7 +134,7 @@ public class InscriptionForm {
 		if (valeur == null || valeur.trim().length() == 0) {
 			return null;
 		} else {
-			return valeur.trim();
+			return valeur;
 		}
 	}
 

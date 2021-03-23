@@ -7,6 +7,10 @@
 	id="WebApp_ID" 
 	version="3.0">
 	
+	<listener>
+    	<listener-class>fr.pacmanweb.config.InitialisationDaoFactory</listener-class>
+	</listener>
+	
 	<!-- Index -->
 	<servlet>
 		<servlet-name>Index</servlet-name>
