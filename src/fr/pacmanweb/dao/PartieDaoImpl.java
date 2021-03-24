@@ -13,7 +13,11 @@ public class PartieDaoImpl implements PartieDao {
 
 	private DAOFactory daoFactory;
 	
-	 private static final String SQL_SELECT = "SELECT * FROM partie";
+	 private static final String SQL_SELECT = "SELECT pseudo , id, score, date FROM utilisateur NATURAL JOIN partie ORDER BY score DESC";
+	 //private static final String SQL_SELECTTOP10 = "SELECT id, score, date FROM partie ORDER BY score DESC LIMIT 10";
+	 private static final String SQL_SELECTTOP10 = "SELECT pseudo , id, score, date FROM utilisateur NATURAL JOIN partie ORDER BY score DESC LIMIT 10";
+	 //SELECT pseudo , score, date FROM utilisateur NATURAL JOIN partie
+	 //SELECT * FROM partie ORDER BY score DESC LIMIT 5
 	
 	// Constructeur
 	public PartieDaoImpl(DAOFactory daoFactory) {
@@ -47,12 +51,38 @@ public class PartieDaoImpl implements PartieDao {
     }
 	
 	
+	@Override
+	public ArrayList<Partie> getTop10Parties() throws DAOException {
+		
+		Connection connexion = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        ArrayList<Partie> top10Parties = new ArrayList<Partie>();
+
+        try {
+            connexion = daoFactory.getConnection();
+            preparedStatement = DAOUtilitaire.initRequetePreparee(connexion, SQL_SELECTTOP10, true);
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+            	top10Parties.add(map(resultSet));
+            }
+        } catch (SQLException e) {
+            throw new DAOException(e);
+        } finally {
+            DAOUtilitaire.fermeturesSilencieuses(resultSet, preparedStatement, connexion);
+        }
+
+        return top10Parties;
+		
+	}
+	
+	
 	private Partie map(ResultSet resSet) throws SQLException {
 		Partie partie = new Partie();
 		
 		partie.setId(resSet.getLong(COLONNE_ID));
 		partie.setScore(resSet.getInt(COLONNE_SCORE));
-		//game.setPlayer(resSet.getString(COLUMN_PLAYER));
+		partie.setJoueur(resSet.getString(COLONNE_JOUEUR));
 		//game.setWinned(resSet.getString(COLUMN_VICTORY) == "TRUE" ? true : false);
 		partie.setDate(resSet.getTimestamp(COLONNE_DATE));
 		

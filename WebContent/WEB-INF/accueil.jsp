@@ -32,6 +32,7 @@
         <thead>
           <tr>
             <th>ID</th>
+            <th>PSEUDO</th>
             <th>SCORE</th>
             <th>DATE</th>
           </tr>
@@ -40,6 +41,7 @@
         <tbody>
           <tr>
             <td> <c:out value="${ p.id }"/> </td>
+            <td> <c:out value="${ p.getJoueur() }"/> </td>
             <td> <c:out value="${ p.score }"/> </td>
             <td> <c:out value="${ p.date }"/> </td>
           </tr>

@@ -28,6 +28,28 @@
 		<p> <a href="/PacmanWeb/inscription"> Inscription </a> </p>
 	</c:if>
 	
+	
+	<h1> Top 10 parties jouées </h1>
+		<table class="table table-striped">
+        <thead>
+          <tr>
+          	<th>PSEUDO</th>
+            <th>SCORE</th>
+            <th>DATE</th>
+          </tr>
+        </thead>
+        <c:forEach var="part" items="${ partie }" >
+        <tbody>
+          <tr>
+          	<td> <c:out value="${ part.getJoueur() }"/> </td>
+            <td> <c:out value="${ part.score }"/> </td>
+            <td> <c:out value="${ part.date }"/> </td>
+          </tr>
+          
+        </tbody>
+        </c:forEach>
+      </table>
+	
 		
 </body>
 

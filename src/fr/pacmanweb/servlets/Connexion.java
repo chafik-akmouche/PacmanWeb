@@ -39,6 +39,7 @@ public class Connexion extends HttpServlet {
         	response.sendRedirect("/PacmanWeb/accueil");
         }
 		
+        System.out.println("je suis la servlet connexion");
 		
 	}
 

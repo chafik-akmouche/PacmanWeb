@@ -12,6 +12,7 @@ public interface UtilisateurDao {
 	
 	
 	public void inserer(Utilisateur utilisateur) throws DAOException;
+	
 	/*
 	public Utilisateur find(String identifiant) throws DAOException;
 	public void updatePwd(Long id,String newPwd); 
