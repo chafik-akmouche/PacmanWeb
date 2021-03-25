@@ -54,14 +54,16 @@
 		<table class="table table-striped">
         <thead>
           <tr>
+          	<th>Classement</th>
           	<th>Joueur</th>
             <th>Score obtenu</th>
-            <th>Date</th>
+            <th>Date de la partie</th>
           </tr>
         </thead>
-        <c:forEach var="part" items="${ partie }" >
+        <c:forEach var="part" items="${ partie }" varStatus="status">
         <tbody>
           <tr>
+          	<td> N° <c:out value="${ status.count }" /> </td>
           	<td> <c:out value="${ part.getJoueur() }"/> </td>
             <td> <c:out value="${ part.score }"/> </td>
             <td> <c:out value="${ part.date }"/> </td>

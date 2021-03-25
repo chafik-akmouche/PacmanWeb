@@ -28,10 +28,10 @@ public class ConnexionForm {
 		Utilisateur utilisateur = utilisateurDao.trouver(id);
 		
 		if (utilisateur != null) {
-			System.out.println(utilisateur.getPseudo());
-			System.out.println(utilisateur.getEmail());
-			System.out.println("mdp récupéré "+utilisateur.getPassword());
-			System.out.println("mdp saisie "+password);
+//			System.out.println(utilisateur.getPseudo());
+//			System.out.println(utilisateur.getEmail());
+//			System.out.println("mdp récupéré "+utilisateur.getPassword());
+//			System.out.println("mdp saisie "+password);
 			
 			if (!utilisateur.getPassword().equals(password)) {
 				setErreur(CHAMP_PASSWORD, "Mot de passe incorrect");

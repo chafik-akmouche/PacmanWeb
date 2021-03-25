@@ -21,7 +21,7 @@ public class Deconnexion extends HttpServlet {
         HttpSession session = request.getSession();
         session.invalidate();
         
-		response.sendRedirect("/PacmanWeb/index");
+		response.sendRedirect("/PacmanWeb/connexion");
 	}
 
 }

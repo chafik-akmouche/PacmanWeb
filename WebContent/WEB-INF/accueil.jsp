@@ -46,16 +46,16 @@
 		<table class="table table-striped">
         <thead>
           <tr>
-            <th>ID</th>
-            <th>PSEUDO</th>
-            <th>SCORE</th>
-            <th>DATE</th>
+            <!-- <th>ID</th>-->
+            <th>Joueur</th>
+            <th>Score obtenu</th>
+            <th>Date de la partie</th>
           </tr>
         </thead>
         <c:forEach var="p" items="${ partie }" >
         <tbody>
           <tr>
-            <td> <c:out value="${ p.id }"/> </td>
+            <!-- <td> <c:out value="${ p.id }"/> </td>-->
             <td> <c:out value="${ p.getJoueur() }"/> </td>
             <td> <c:out value="${ p.score }"/> </td>
             <td> <c:out value="${ p.date }"/> </td>

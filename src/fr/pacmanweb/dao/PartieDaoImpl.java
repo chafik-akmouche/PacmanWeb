@@ -12,12 +12,13 @@ import fr.pacmanweb.beans.Partie;
 public class PartieDaoImpl implements PartieDao {
 
 	private DAOFactory daoFactory;
-	
-	 private static final String SQL_SELECT = "SELECT pseudo , id, score, date FROM utilisateur NATURAL JOIN partie ORDER BY score DESC";
-	 //private static final String SQL_SELECTTOP10 = "SELECT id, score, date FROM partie ORDER BY score DESC LIMIT 10";
-	 private static final String SQL_SELECTTOP10 = "SELECT pseudo , id, score, date FROM utilisateur NATURAL JOIN partie ORDER BY score DESC LIMIT 10";
-	 //SELECT pseudo , score, date FROM utilisateur NATURAL JOIN partie
-	 //SELECT * FROM partie ORDER BY score DESC LIMIT 5
+	//SELECT pseudo, id, score, date FROM partie NATURAL JOIN partie WHERE pseudo = ?
+	private static final String SQL_SELECTMESPARTIES = "SELECT pseudo, id, score, date FROM utilisateur NATURAL JOIN partie WHERE pseudo=? ORDER BY date DESC";
+	//private static final String SQL_SELECT = "SELECT pseudo , id, score, date FROM utilisateur NATURAL JOIN partie ORDER BY date DESC";
+	//private static final String SQL_SELECTTOP10 = "SELECT id, score, date FROM partie ORDER BY score DESC LIMIT 10";
+	private static final String SQL_SELECTTOP10 = "SELECT pseudo , id, score, date FROM utilisateur NATURAL JOIN partie ORDER BY score DESC LIMIT 10";
+	//SELECT pseudo , score, date FROM utilisateur NATURAL JOIN partie
+	//SELECT * FROM partie ORDER BY score DESC LIMIT 5
 	
 	// Constructeur
 	public PartieDaoImpl(DAOFactory daoFactory) {
@@ -27,8 +28,31 @@ public class PartieDaoImpl implements PartieDao {
 	}
 	
 	
+//	@Override
+//    public ArrayList<Partie> getParties() {
+//        Connection connexion = null;
+//        PreparedStatement preparedStatement = null;
+//        ResultSet resultSet = null;
+//        ArrayList<Partie> parties = new ArrayList<Partie>();
+//
+//        try {
+//            connexion = daoFactory.getConnection();
+//            preparedStatement = DAOUtilitaire.initRequetePreparee(connexion, SQL_SELECT, true);
+//            resultSet = preparedStatement.executeQuery();
+//            while (resultSet.next()) {
+//                parties.add(map(resultSet));
+//            }
+//        } catch (SQLException e) {
+//            throw new DAOException(e);
+//        } finally {
+//            DAOUtilitaire.fermeturesSilencieuses(resultSet, preparedStatement, connexion);
+//        }
+//
+//        return parties;
+//    }
+	
 	@Override
-    public ArrayList<Partie> getParties() {
+    public ArrayList<Partie> getMesParties(String pseudo) {
         Connection connexion = null;
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
@@ -36,7 +60,7 @@ public class PartieDaoImpl implements PartieDao {
 
         try {
             connexion = daoFactory.getConnection();
-            preparedStatement = DAOUtilitaire.initRequetePreparee(connexion, SQL_SELECT, true);
+            preparedStatement = DAOUtilitaire.initRequetePreparee(connexion, SQL_SELECTMESPARTIES, false, pseudo);
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 parties.add(map(resultSet));
@@ -83,7 +107,6 @@ public class PartieDaoImpl implements PartieDao {
 		partie.setId(resSet.getLong(COLONNE_ID));
 		partie.setScore(resSet.getInt(COLONNE_SCORE));
 		partie.setJoueur(resSet.getString(COLONNE_JOUEUR));
-		//game.setWinned(resSet.getString(COLUMN_VICTORY) == "TRUE" ? true : false);
 		partie.setDate(resSet.getTimestamp(COLONNE_DATE));
 		
 		return partie;

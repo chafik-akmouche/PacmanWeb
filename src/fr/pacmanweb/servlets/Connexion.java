@@ -58,8 +58,9 @@ public class Connexion extends HttpServlet {
         HttpSession session = request.getSession();
         
         // Stockage du formulaire et du bean dans l'objet request
-        request.setAttribute( ATT_FORM, form );
-        request.setAttribute( ATT_UTILISATEUR, utilisateur);
+        request.setAttribute(ATT_FORM, form );
+        request.setAttribute(ATT_UTILISATEUR, utilisateur);
+        //request.setAttribute(PSEUDO, pseudo);
         
         // Si aucune erreur de validation n'a eu lieu, alors ajout du bean
         // Utilisateur à la session, sinon suppression du bean de la session.
