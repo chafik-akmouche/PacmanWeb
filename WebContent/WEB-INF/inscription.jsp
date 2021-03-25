@@ -2,20 +2,45 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="fr">
 	<head>
 		<meta charset="UTF-8">
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+		  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
 		<title> Inscription </title>
 	</head>
 	
 	<body>
 	
-	<ul>
-		<li> <a href="/PacmanWeb/"> Home </a> </li>
-	</ul>
-	
 	<div class="container">
+	
+	
+	<nav class="navbar navbar-inverse">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="/PacmanWeb/index">Pacman</a>
+			</div>
+		
+			<ul class="nav navbar-nav">
+				<li><a href="/PacmanWeb/index"><span class="glyphicon glyphicon-home"></span> Home </a></li>
+				<li><a href="#"><span class="glyphicon glyphicon-download-alt"></span> Téléchargement </a></li>
+			</ul>
+			
+			<ul class="nav navbar-nav navbar-right"> 
+				<li><a href="/PacmanWeb/connexion"><span class="glyphicon glyphicon-log-in"></span> Connexion </a></li>
+				<li><a href="/PacmanWeb/inscription"><span class="glyphicon glyphicon-menu-hamburger"></span> Inscription </a></li>
+			</ul>
+			
+		</div>
+	</nav>
+	
+	
+	<br />
+	
+	
 		<h1> Inscription </h1> <br/> <br/>            
 		<form action="inscription" method = "post">
 			<div class="form-group">

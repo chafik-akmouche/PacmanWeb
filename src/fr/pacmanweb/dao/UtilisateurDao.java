@@ -8,17 +8,12 @@ public interface UtilisateurDao {
 	public static String COLONNE_EMAIL = "email";
 	public static String COLONNE_PASSWORD = "password";
 	public static String COLONNE_PSEUDO = "pseudo";
-	public static String COLONNE_DATE_INS = "inscription";
+	public static String COLONNE_DATE_INS = "date_inscription";
 	
 	
 	public void inserer(Utilisateur utilisateur) throws DAOException;
 	
-	/*
-	public Utilisateur find(String identifiant) throws DAOException;
-	public void updatePwd(Long id,String newPwd); 
-	public void updatePseudo(Long id,String pseudo);
-	public void updateEmail(Long id,String email);
-	public void deleteAccount(String ident);
-	*/
+	// l'authentification se fait via le pseudo ou l'email
+	public Utilisateur trouver(String identifiant) throws DAOException;
 	
 }

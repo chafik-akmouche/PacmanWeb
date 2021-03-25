@@ -2,32 +2,47 @@
 
 <!DOCTYPE html>
 
-<html>
-
+<html lang="fr">
 	<head>
 		<meta charset="UTF-8">
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+		
 		<title> Accueil </title>
+		
 	</head>
 
 <body>
+<div class="container">
 
-	<h1> Tableau de bord </h1>
+
+<nav class="navbar navbar-inverse">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="/PacmanWeb/index">Pacman</a>
+			</div>
 		
-		<ul>
-			<li> <a href="/PacmanWeb/"> Home </a> </li>
-			<li> 
-				<a href="#"> 
-					<c:if test="${!empty sessionScope.sessionUtilisateur}">
-		             	<p> ${sessionScope.sessionUtilisateur.pseudo} </p>
-		        	</c:if>
-				</a> 
-			</li>
+			<ul class="nav navbar-nav">
+				<li><a href="/PacmanWeb/index"><span class="glyphicon glyphicon-home"></span> Home </a></li>
+				<li><a href="#"><span class="glyphicon glyphicon-download-alt"></span> Téléchargement </a></li>
+			</ul>
 			
-			<li> <a href="/PacmanWeb/deconnexion"> Déconnexion </a> </li>
-		</ul>
+			<c:if test="${!empty sessionScope.sessionUtilisateur}">
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="/PacmanWeb/accueil"><span class="glyphicon glyphicon-user"></span> ${sessionScope.sessionUtilisateur.pseudo} </a></li>
+				<li><a href="/PacmanWeb/deconnexion"><span class="glyphicon glyphicon-log-out"></span> Déconnexion </a></li>
+			</ul>
+			</c:if>
+			
+		</div>
+	</nav>
 		
-		<h1> Mon historique des parties jouées </h1>
+		
+		
+		<h2> Historique des parties jouées </h2> <br/>
+		
 		<table class="table table-striped">
         <thead>
           <tr>
@@ -49,6 +64,9 @@
         </tbody>
         </c:forEach>
       </table>
+
+
+</div>
 	
 </body>
 </html>

@@ -10,16 +10,7 @@ import fr.pacmanweb.beans.Utilisateur;
 public class UtilisateurDaoImpl implements UtilisateurDao {
 	private DAOFactory daoFactory;
 	
-//	private static final String SQL_INSERT = "INSERT INTO "
-//    		+ TABLE_UTILISATEUR 		+ "("
-//    		+ COLONNE_EMAIL 		+ ", "
-//    		+ COLONNE_PASSWORD 	+ ", "
-//    		+ COLONNE_PSEUDO		
-//    		+") VALUES(?, ?, ?, CURRENT_TIMESTAMP)";
-	
-	// Requête plus simple
-	//String r = "INSERT INTO `utilisateur` (`pseudo`, `password`, `email`, `date_inscription`) VALUES (?, ?, ?, current_timestamp())";
-	//private static final String SQL_INSERT = "INSERT INTO utilisateur (email, password, pseudo, date_inscription) VALUES (?, ?, ?, NOW())";
+	private static final String SQL_TROUVER = "SELECT id, email, pseudo, password, date_inscription FROM utilisateur WHERE utilisateur.pseudo = ?";
 	private static final String SQL_INSERT = "INSERT INTO utilisateur (email, password, pseudo, date_inscription) VALUES (?, ?, ?, current_timestamp())";
 	
 	public UtilisateurDaoImpl(DAOFactory daoFactory) {
@@ -61,6 +52,31 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
 	}
 	
 	
+	@Override
+	public Utilisateur trouver (String identifiant) throws DAOException {
+		Connection connexion = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resSet = null;
+		Utilisateur utilisateur = null;
+		
+		try {
+			connexion = daoFactory.getConnection();
+			preparedStatement = DAOUtilitaire.initRequetePreparee(connexion, SQL_TROUVER, false, identifiant);
+			resSet = preparedStatement.executeQuery();
+			if(resSet.next()) {
+				utilisateur = map(resSet);
+			}
+			
+		} catch (SQLException e) {
+			throw new DAOException(e);
+		} finally {
+			DAOUtilitaire.fermeturesSilencieuses(resSet, preparedStatement, connexion);
+		}
+		
+		return utilisateur;
+	}
+	
+	
 	private static Utilisateur map (ResultSet resultSet) throws SQLException {
 		
 		Utilisateur utilisateur = new Utilisateur();
@@ -73,5 +89,6 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
 		
 		return utilisateur;
 	}
+
 
 }

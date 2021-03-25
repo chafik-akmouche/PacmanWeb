@@ -10,50 +10,54 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import fr.pacmanweb.beans.Utilisateur;
+import fr.pacmanweb.dao.UtilisateurDao;
 import fr.pacmanweb.forms.ConnexionForm;
+import fr.pacmanweb.dao.DAOFactory;
 
 @WebServlet("/Connexion")
 public class Connexion extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final String ATT_SESSION_UTILISATEUR = "sessionUtilisateur";
+	private static final String CONF_DAO_FACTORY = "daoFactory";
 	private static final String ATT_FORM = "form";
 	private static final String ATT_UTILISATEUR = "utilisateur";
 	private static final String VUE = "/WEB-INF/connexion.jsp";
 
-    public Connexion() {
+	private UtilisateurDao utilisateurDao ;
+
+	public void init() throws ServletException {
+		// récupération d'une instance de notre dao utilisateur
+		this.utilisateurDao = ((DAOFactory) getServletContext().getAttribute(CONF_DAO_FACTORY)).getUtilisateurDao();
+//		DAOFactory daoFactory = DAOFactory.getInstance();
+//        this.utilisateurDao = daoFactory.getUtilisateurDao();
+	}
+	
+	public Connexion() {
         super();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		 /* Récupération de la session depuis la requête */
+		// Récupération de la session depuis la requête
         HttpSession session = request.getSession();
 
-         // Si l'objet utilisateur n'existe pas dans la session en cours, alors
-         // l'utilisateur n'est pas connecté.
         if ( session.getAttribute( ATT_SESSION_UTILISATEUR ) == null ) {
-            /* Redirection vers la page publique */
         	this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
         } else {
-            /* Affichage de la page restreinte */
         	response.sendRedirect("/PacmanWeb/accueil");
-        }
-		
-        System.out.println("je suis la servlet connexion");
-		
+        }		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		/* Préparation de l'objet formulaire */
-        ConnexionForm form = new ConnexionForm();
+		// Préparation de l'objet formulaire
+        ConnexionForm form = new ConnexionForm(utilisateurDao);
         
-        /* Traitement de la requête et récupération du bean en résultant */
+        // Traitement de la requête et récupération du bean en résultant
         Utilisateur utilisateur = form.connexionUtilisateur(request);
 
         HttpSession session = request.getSession();
         
-        /* Stockage du formulaire et du bean dans l'objet request */
+        // Stockage du formulaire et du bean dans l'objet request
         request.setAttribute( ATT_FORM, form );
         request.setAttribute( ATT_UTILISATEUR, utilisateur);
         
