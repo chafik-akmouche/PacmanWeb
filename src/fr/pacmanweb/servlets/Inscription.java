@@ -40,7 +40,7 @@ public class Inscription extends HttpServlet {
 
          // Si l'objet utilisateur n'existe pas dans la session en cours, alors
          // l'utilisateur n'est pas connecté.
-        if ( session.getAttribute( ATT_SESSION_UTILISATEUR ) == null ) {
+        if (session.getAttribute( ATT_SESSION_UTILISATEUR ) == null) {
             /* Redirection vers la page publique */
         	this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
         } else {
@@ -59,12 +59,6 @@ public class Inscription extends HttpServlet {
         /* Stockage du formulaire et du bean dans l'objet request */
         request.setAttribute(ATT_FORM, form);
         request.setAttribute(ATT_UTILISATEUR, utilisateur);
-        
-        // affichage sur la sortie standard pour vérification
-//        System.out.println("Pseudo : "+utilisateur.getPseudo());
-//        System.out.println("Email : "+utilisateur.getEmail());
-//        System.out.println("Mot de passe : "+utilisateur.getPassword());
-//        System.out.println("ID : "+utilisateur.getId());
        
         this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
 	}

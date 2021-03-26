@@ -12,8 +12,7 @@ public interface UtilisateurDao {
 	
 	
 	public void inserer(Utilisateur utilisateur) throws DAOException;
-	
-	// l'authentification se fait via le pseudo ou l'email
 	public Utilisateur trouver(String identifiant) throws DAOException;
+	public void supprimerCompte(String identifiant) throws DAOException;
 	
 }

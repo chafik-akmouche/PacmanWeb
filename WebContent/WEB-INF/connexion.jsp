@@ -24,7 +24,7 @@
 		
 			<ul class="nav navbar-nav">
 				<li><a href="/PacmanWeb/index"><span class="glyphicon glyphicon-home"></span> Home </a></li>
-				<li><a href="#"><span class="glyphicon glyphicon-download-alt"></span> Téléchargement </a></li>
+				<li><a href="/PacmanWeb/telechargement"><span class="glyphicon glyphicon-download-alt"></span> Téléchargement </a></li>
 			</ul>
 			
 			<ul class="nav navbar-nav navbar-right"> 

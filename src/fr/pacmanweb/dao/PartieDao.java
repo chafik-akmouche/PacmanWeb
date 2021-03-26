@@ -1,7 +1,6 @@
 package fr.pacmanweb.dao;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import fr.pacmanweb.beans.Partie;
 

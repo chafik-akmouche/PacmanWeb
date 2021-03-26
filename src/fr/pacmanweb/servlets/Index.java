@@ -23,7 +23,7 @@ public class Index extends HttpServlet {
 private PartieDao partieDao ;
 	
 	public void init() throws ServletException {
-		/*récupération d'une instance de notre dao partie */
+		// récupération d'une instance de notre dao partie
 		this.partieDao = ((DAOFactory) getServletContext().getAttribute(CONF_DAO_FACTORY)).getPartieDao();
 	}
 	
@@ -34,11 +34,7 @@ private PartieDao partieDao ;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
 		
 		List<Partie> top10Parties = partieDao.getTop10Parties();
-        request.setAttribute(ATT_TOP10PARTIES, top10Parties);
-        
-        //System.out.println("Je suis la servlet index");
-        
-        
+        request.setAttribute(ATT_TOP10PARTIES, top10Parties);        
         this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
 	}
 

@@ -44,6 +44,17 @@
 		<url-pattern>/connexion</url-pattern>
 	</servlet-mapping>
 	
+	<!-- Téléchargement -->
+	<servlet>
+		<servlet-name>Telechargement</servlet-name>
+		<servlet-class>fr.pacmanweb.servlets.Telechargement</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>Telechargement</servlet-name>
+		<url-pattern>/telechargement</url-pattern>
+	</servlet-mapping>
+	
 	<!-- Accueil -->
 	<servlet>
 		<servlet-name>Accueil</servlet-name>
@@ -64,6 +75,17 @@
 	<servlet-mapping>
 		<servlet-name>Deconnexion</servlet-name>
 		<url-pattern>/deconnexion</url-pattern>
+	</servlet-mapping>
+	
+	<!-- Supprimer -->
+	<servlet>
+		<servlet-name>Supprimer</servlet-name>
+		<servlet-class>fr.pacmanweb.servlets.Supprimer</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>Supprimer</servlet-name>
+		<url-pattern>/supprimer</url-pattern>
 	</servlet-mapping>
 	
 	<!-- taglibs.jsp doit être inclus en préambule de toutes les JSP -->
