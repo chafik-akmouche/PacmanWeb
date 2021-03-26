@@ -41,7 +41,7 @@
 		
 		
 		
-		<h2> Historique des parties jouées </h2> <br/>
+		<h2> Historique de mes parties jouées </h2> <br/>
 		
 		<table class="table table-striped">
         <thead>
@@ -66,7 +66,12 @@
       </table>
 
 	<br/><br/>
-	<a href="/PacmanWeb/supprimer">Supprimer mon compte</a>
+	<p>
+		<a href="#"> <span class="glyphicon glyphicon-edit"></span> Modifier mes informations </a>
+	</p>
+	<p>
+		<a href="/PacmanWeb/supprimer" style="color:red;"> <span style="color:red;" class="glyphicon glyphicon-remove"></span> Supprimer mon compte </a>
+	</p>
 
 </div>
 	
