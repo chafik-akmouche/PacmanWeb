@@ -14,5 +14,8 @@ public interface UtilisateurDao {
 	public void inserer(Utilisateur utilisateur) throws DAOException;
 	public Utilisateur trouver(String identifiant) throws DAOException;
 	public void supprimerCompte(String identifiant) throws DAOException;
+	public void modifierCompte(Utilisateur utilisateur) throws DAOException;
+	//Utilisateur verifier(String sql, String new_pseudo) throws DAOException;
+	Utilisateur verifier(String sql, Object ... objets) throws DAOException;
 	
 }

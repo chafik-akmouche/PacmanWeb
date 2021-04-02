@@ -25,7 +25,6 @@ public class Inscription extends HttpServlet {
 	private UtilisateurDao utilisateurDao;
 	
 	public void init() throws ServletException {
-		//this.utilisateurDao = ((DAOFactory) getServletContext().getAttribute(CONF_DAO_FACTORY)).getUtilisateurDao();
 		DAOFactory daoFactory = DAOFactory.getInstance();
         this.utilisateurDao = daoFactory.getUtilisateurDao();
 	}
@@ -38,10 +37,7 @@ public class Inscription extends HttpServlet {
 		 // Récupération de la session depuis la requête
         HttpSession session = request.getSession();
 
-         // Si l'objet utilisateur n'existe pas dans la session en cours, alors
-         // l'utilisateur n'est pas connecté.
         if (session.getAttribute( ATT_SESSION_UTILISATEUR ) == null) {
-            /* Redirection vers la page publique */
         	this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
         } else {
             // Affichage de la page restreinte

@@ -41,7 +41,6 @@ public class InscriptionForm {
 		
 		Utilisateur utilisateur = new Utilisateur();
 		
-		// Validation du champ pseudo
 		try {
 			traiterEmail(email, utilisateur);
 			traiterPseudo(pseudo, utilisateur);
@@ -49,7 +48,7 @@ public class InscriptionForm {
 			
 			if (erreurs.isEmpty()) {
 				utilisateurDao.inserer(utilisateur);
-				resultat = "Succès de l'inscription";
+				resultat = "Inscription effectuée avec succès";
 			} else {
 				resultat = "Échec de l'inscription";
 			}

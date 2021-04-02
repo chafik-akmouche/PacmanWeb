@@ -33,6 +33,17 @@
 		<url-pattern>/inscription</url-pattern>
 	</servlet-mapping>
 	
+	<!-- Modification -->
+	<servlet>
+		<servlet-name>Modification</servlet-name>
+		<servlet-class>fr.pacmanweb.servlets.Modification</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>Modification</servlet-name>
+		<url-pattern>/modification</url-pattern>
+	</servlet-mapping>
+	
 	<!-- Connexion -->
 	<servlet>
 		<servlet-name>Connexion</servlet-name>

@@ -36,11 +36,9 @@ public class Supprimer extends HttpServlet {
 		
 		if (session.getAttribute(ATT_SESSION_UTILISATEUR) == null) {
         	response.sendRedirect("/PacmanWeb/connexion");
-			//this.getServletContext().getRequestDispatcher("/PacmanWeb/connexion").forward(request, response);
         	
         } else {
         	String pseu = ((Utilisateur) session.getAttribute(ATT_SESSION_UTILISATEUR)).getPseudo();
-        	//System.out.println("session : "+pseu);
         	
         	utilisateurDao.supprimerCompte(pseu);
         	session.invalidate();

@@ -15,6 +15,17 @@
 	</head>
 
 <body>
+
+<script>
+	function myFunction() {
+	  var r = confirm("Press a button!");
+	  if (r == true) {
+		  window.open('/PacmanWeb/supprimer);
+	  } else {
+		  
+	  }
+	}
+</script>
 <div class="container">
 
 
@@ -38,11 +49,9 @@
 			
 		</div>
 	</nav>
-		
-		
-		
+	
+		<br /> <br />
 		<h2> Historique de mes parties jouées </h2> <br/>
-		
 		<table class="table table-striped">
         <thead>
           <tr>
@@ -55,7 +64,6 @@
         <c:forEach var="p" items="${ partie }" >
         <tbody>
           <tr>
-            <!-- <td> <c:out value="${ p.id }"/> </td>-->
             <td> <c:out value="${ p.getJoueur() }"/> </td>
             <td> <c:out value="${ p.score }"/> </td>
             <td> <c:out value="${ p.date }"/> </td>
@@ -67,11 +75,16 @@
 
 	<br/><br/>
 	<p>
-		<a href="#"> <span class="glyphicon glyphicon-edit"></span> Modifier mes informations </a>
+		<a href="/PacmanWeb/modification"> <span class="glyphicon glyphicon-edit"></span> Modifier mes informations </a>
 	</p>
+	
 	<p>
-		<a href="/PacmanWeb/supprimer" style="color:red;"> <span style="color:red;" class="glyphicon glyphicon-remove"></span> Supprimer mon compte </a>
+		<a href="/PacmanWeb/supprimer" class="w3-btn w3-red" style="color:red;" onclick="return confirm('Voulez-vous supprimer diffinitivement votre profil ?');"> <span style="color:red;" class="glyphicon glyphicon-remove"></span> Supprimer mon compte </a>
 	</p>
+	
+	<!-- <p>
+		<a href="/PacmanWeb/supprimer" style="color:red;"> <span style="color:red;" class="glyphicon glyphicon-remove"></span> Supprimer mon compte </a>
+	</p>-->
 
 </div>
 	

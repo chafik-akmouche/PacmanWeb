@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 
 <html lang="fr">
@@ -15,7 +16,6 @@
 <body>
 
 <div class="container">
-
 <nav class="navbar navbar-inverse">
 		<div class="container-fluid">
 			<div class="navbar-header">
@@ -40,7 +40,7 @@
 		<form action="connexion" method = "post">
 			<div class="form-group">
 				<label for="username"> Nom d'utilisateur </label>
-				<input type="text" class="form-control" value="<c:out value="${utilisateur.pseudo}"/>" name="pseudo" id="pseudo" placeholder="Pseudo ..." required />
+				<input type="text" class="form-control" value="" name="pseudo" id="pseudo" placeholder="Pseudo ..." required />
 				 <span style="color:red;">${form.erreurs['pseudo']}</span>
 			</div> <br/>
 			<div class="form-group">

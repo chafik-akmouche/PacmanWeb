@@ -28,8 +28,6 @@ public class Connexion extends HttpServlet {
 	public void init() throws ServletException {
 		// récupération d'une instance de notre dao utilisateur
 		this.utilisateurDao = ((DAOFactory) getServletContext().getAttribute(CONF_DAO_FACTORY)).getUtilisateurDao();
-//		DAOFactory daoFactory = DAOFactory.getInstance();
-//        this.utilisateurDao = daoFactory.getUtilisateurDao();
 	}
 	
 	public Connexion() {
@@ -60,7 +58,6 @@ public class Connexion extends HttpServlet {
         // Stockage du formulaire et du bean dans l'objet request
         request.setAttribute(ATT_FORM, form );
         request.setAttribute(ATT_UTILISATEUR, utilisateur);
-        //request.setAttribute(PSEUDO, pseudo);
         
         // Si aucune erreur de validation n'a eu lieu, alors ajout du bean
         // Utilisateur à la session, sinon suppression du bean de la session.

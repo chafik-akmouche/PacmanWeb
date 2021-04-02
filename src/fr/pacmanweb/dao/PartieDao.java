@@ -12,7 +12,6 @@ public interface PartieDao  {
 	public static String COLONNE_DATE = "date";
 	public static String COLONNE_JOUEUR = "pseudo";
 	
-	//ArrayList<Partie> getParties() throws DAOException;
 	ArrayList<Partie> getTop10Parties() throws DAOException;
 	ArrayList<Partie> getMesParties(String pseudo) throws DAOException;
 }
